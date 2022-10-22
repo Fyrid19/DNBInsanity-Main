@@ -13,6 +13,7 @@ class ClientPrefs {
 	public static var flashing:Bool = true;
 	public static var autosaveInterval:Int = 5;
 	public static var autosavecharts:Bool = true;
+	public static var shouldCameraMove:Bool = true;
 	public static var themedmainmenubg:Bool = false;
 	public static var autotitleskip:Bool = false;
 	public static var globalAntialiasing:Bool = true;
@@ -143,6 +144,7 @@ class ClientPrefs {
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 		FlxG.save.data.autosaveInterval = autosaveInterval;
 		FlxG.save.data.autosavecharts = autosavecharts;
+		FlxG.save.data.shouldCameraMove = shouldCameraMove;
 		FlxG.save.data.themedmainmenubg = themedmainmenubg;
 		FlxG.save.data.autotitleskip = autotitleskip;
 		FlxG.save.data.iconbops = iconbops;
@@ -227,6 +229,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.autosavecharts != null) {
 			autosavecharts = FlxG.save.data.autosavecharts;
+		}
+		if(FlxG.save.data.shouldCameraMove != null) {
+			shouldCameraMove = FlxG.save.data.shouldCameraMove;
 		}
 		if(FlxG.save.data.themedmainmenubg != null) {
 			themedmainmenubg = FlxG.save.data.themedmainmenubg;

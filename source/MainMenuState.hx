@@ -31,11 +31,39 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	public static var osEngineVersion:String = '1.5.1'; //This is also used for Discord RPC
+	public static var MSEngineVersion:String = '1.0';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+
+	public static var bgPaths:Array<String> = //thats a lot of backgrounds
+	[
+		'backgrounds/SwagnotrllyTheMod',
+		'backgrounds/morie',
+		'backgrounds/mantis',
+		'backgrounds/mamakotomi',
+		'backgrounds/Aadsta',
+		'backgrounds/ArtiztGmer',
+		'backgrounds/DeltaKastel',
+		'backgrounds/DeltaKastel2',
+		'backgrounds/DeltaKastel3',
+		'backgrounds/DeltaKastel4',
+		'backgrounds/DeltaKastel5',
+		'backgrounds/diamond man',
+		'backgrounds/Jukebox',
+		'backgrounds/kiazu',
+		'backgrounds/Lancey',
+		'backgrounds/mepperpint',
+		'backgrounds/neon',
+		'backgrounds/Onuko',
+		'backgrounds/ps',
+		'backgrounds/ramzgaming',
+		'backgrounds/ricee_png',
+		'backgrounds/sk0rbias',
+		'backgrounds/zombought'
+	];
 	
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -88,7 +116,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-        var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+        var bg:FlxSprite = new FlxSprite(-80).loadGraphic(randomizeBG());
         bg.scrollFactor.set(0, yScroll);
         bg.setGraphicSize(Std.int(bg.width * 1.175));
         bg.updateHitbox();
@@ -168,14 +196,14 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(FlxG.width * 0.7, FlxG.height - 44, 0, "OS Engine v" + osEngineVersion + " - Modded Psych Engine", 12);
+		var versionShit:FlxText = new FlxText(FlxG.width * 0.7, FlxG.height - 24, 0, "MS Engine v" + MSEngineVersion, 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(FlxG.width * 0.7, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+		/*var versionShit:FlxText = new FlxText(FlxG.width * 0.7, FlxG.height - 24, 0, "OS Engine v" + osEngineVersion + " - Modded Psych Engine", 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		versionShit.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);*/
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -240,11 +268,15 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-			if(FreeplayState.vocals != null) FreeplayState.vocals.volume += 0.5 * elapsed;
+			//if(PackSelectState.vocals != null) PackSelectState.vocals.volume += 0.5 * elapsed;
 		}
 
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+
+		if (FlxG.keys.justPressed.NUMPADPERIOD) {
+			MusicBeatState.switchState(new TerminalState());
+		}
 
 		if (!selectedSomethin)
 		{
@@ -310,7 +342,7 @@ class MainMenuState extends MusicBeatState
 									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
-										MusicBeatState.switchState(new FreeplayState());
+										MusicBeatState.switchState(new PackSelectState());
 									#if MODS_ALLOWED
 									case 'mods':
 										MusicBeatState.switchState(new ModsMenuState());
@@ -334,7 +366,7 @@ class MainMenuState extends MusicBeatState
 									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
-										MusicBeatState.switchState(new FreeplayState());
+										MusicBeatState.switchState(new PackSelectState());
 									#if MODS_ALLOWED
 									case 'mods':
 										MusicBeatState.switchState(new ModsMenuState()); 
@@ -397,5 +429,11 @@ class MainMenuState extends MusicBeatState
 				//spr.centerOffsets();
 			}
 		});
+	}
+
+	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
+	{
+		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
+		return Paths.image(bgPaths[chance]);
 	}
 }

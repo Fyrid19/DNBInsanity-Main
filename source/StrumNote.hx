@@ -3,6 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.math.FlxMath;
+import flixel.math.FlxRandom;
 import PlayState;
 #if sys
 import sys.FileSystem;
@@ -71,7 +73,24 @@ class StrumNote extends FlxSprite
 		}
 		#end
 		//trace(PlayState.SONG.arrowSkin); мама я в ютубе
+
+		if (PlayState.playerIs3D && player == 1) {
+			skin = '3DNotes';
+		} 
+		if (PlayState.opponentIs3D && player == 0) {
+			skin = '3DNotes';
+		}
+
 		texture = skin; //Load texture and anims
+
+		if (PlayState.globalFunny == CharacterFunnyEffect.Barren) {
+			leData = 3;
+		}
+
+		var rng:FlxRandom = new FlxRandom();
+		if (PlayState.globalFunny == CharacterFunnyEffect.Lenzo) {
+			leData = rng.int(0, 3);
+		}
 
 		scrollFactor.set();
 	}

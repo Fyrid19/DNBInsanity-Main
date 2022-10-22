@@ -3073,12 +3073,12 @@ class ChartingState extends MusicBeatState
 		//make it look sexier if possible
 		if (CoolUtil.difficulties[PlayState.storyDifficulty] != CoolUtil.defaultDifficulty) {
 			if(CoolUtil.difficulties[PlayState.storyDifficulty] == null){
-				PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+				PlayState.SONG = Song.loadFromJson(song.toLowerCase(), 'charts');
 			}else{
-				PlayState.SONG = Song.loadFromJson(song.toLowerCase() + "-" + CoolUtil.difficulties[PlayState.storyDifficulty], song.toLowerCase());
+				PlayState.SONG = Song.loadFromJson(song.toLowerCase(), 'charts');
 			}
 		}else{
-		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), 'charts');
 		}
 		MusicBeatState.resetState();
 	}

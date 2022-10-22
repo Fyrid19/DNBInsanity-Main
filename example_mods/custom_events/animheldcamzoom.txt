@@ -1,0 +1,4 @@
+add held camera zoom instead of impact camera zoom
+
+Value 1: intensity of the zoom (norm is 0.9)
+Value 2: Duration (in seconds)

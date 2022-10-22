@@ -99,6 +99,8 @@ class Note extends FlxSprite
 
 	public var hitsoundDisabled:Bool = false;
 
+	public var controls:Controls = PlayerSettings.player1.controls;
+
 	private function set_multSpeed(value:Float):Float {
 		resizeByRatio(value / multSpeed);
 		multSpeed = value;
@@ -148,6 +150,13 @@ class Note extends FlxSprite
 					} else {
 						missHealth = 0.3;
 					}
+					hitCausesMiss = true;
+				case 'Drive Note':
+					ignoreNote = mustPress;
+					reloadNote('DRIVE');
+					noteSplashTexture = 'HURTnoteSplashes';
+					lowPriority = true;
+					missHealth = 0;
 					hitCausesMiss = true;
 				case 'Alt Animation':
 					animSuffix = '-alt';
@@ -443,28 +452,64 @@ class Note extends FlxSprite
 	{
 		super.update(elapsed);
 
-		if (mustPress)
-		{
-			// ok river
-			if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * lateHitMult)
-				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
-				canBeHit = true;
+		if (!controls.KEY5) {
+			if (mustPress)
+			{
+				// ok river
+				if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * lateHitMult)
+					&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
+					canBeHit = true;
+				else
+					canBeHit = false;
+
+				if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
+					tooLate = true;
+			}
 			else
+			{
 				canBeHit = false;
 
-			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
-				tooLate = true;
-		}
-		else
-		{
-			canBeHit = false;
-
-			if (strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
+				if (strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
+				{
+					if((isSustainNote && prevNote.wasGoodHit) || strumTime <= Conductor.songPosition)
+						wasGoodHit = true;
+				}
+			}
+		} else if (controls.KEY5) {
+			if (mustPress && noteType == 'Shape Note')
 			{
-				if((isSustainNote && prevNote.wasGoodHit) || strumTime <= Conductor.songPosition)
-					wasGoodHit = true;
+				// ok river
+				if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * lateHitMult)
+					&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
+					canBeHit = true;
+				else
+					canBeHit = false;
+
+				if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
+					tooLate = true;
+				
+				if (isSustainNote)
+					alpha = 0.6;
+				else
+					alpha = 1;
+			}
+			else
+			{
+				canBeHit = false;
+
+				if (strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
+				{
+					if((isSustainNote && prevNote.wasGoodHit) || strumTime <= Conductor.songPosition)
+						wasGoodHit = true;
+				}
+
+				if (isSustainNote)
+					alpha = 0.2;
+				else
+					alpha = 0.6;
 			}
 		}
+		
 
 		if (tooLate && !inEditor)
 		{
