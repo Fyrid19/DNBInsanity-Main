@@ -471,7 +471,7 @@ class ModsMenuState extends MusicBeatState
 			noModsTxt.alpha = 1 - Math.sin((Math.PI * noModsSine) / 180);
 		}
 
-		if((canExit && controls.BACK) || (canExit && FlxG.mouse.justPressedRight))
+		if(canExit && controls.BACK)
 		{
 			if(colorTween != null) {
 				colorTween.cancel();
@@ -485,11 +485,11 @@ class ModsMenuState extends MusicBeatState
 				TitleState.initialized = false;
 				TitleState.closedState = false;
 				FlxG.sound.music.fadeOut(0.3);
-				/*if(FreeplayState.vocals != null)
+				if(FreeplayState.vocals != null)
 				{
 					FreeplayState.vocals.fadeOut(0.3);
 					FreeplayState.vocals = null;
-				}*/
+				}
 				FlxG.camera.fade(FlxColor.BLACK, 0.5, false, FlxG.resetGame, false);
 			}
 			else
@@ -498,12 +498,12 @@ class ModsMenuState extends MusicBeatState
 			}
 		}
 
-		if(controls.UI_UP_P || FlxG.mouse.wheel > 0)
+		if(controls.UI_UP_P)
 		{
 			changeSelection(-1);
 			FlxG.sound.play(Paths.sound('scrollMenu'));
 		}
-		if(controls.UI_DOWN_P || FlxG.mouse.wheel < 0)
+		if(controls.UI_DOWN_P)
 		{
 			changeSelection(1);
 			FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -744,14 +744,6 @@ class ModMetadata
 				if(description != null && description.length > 0)
 				{
 					this.description = description;
-				}
-				if(name == 'Name')
-				{
-					this.name = folder;
-				}
-				if(description == 'Description')
-				{
-					this.description = "No description provided.";
 				}
 				if(colors != null && colors.length > 2)
 				{

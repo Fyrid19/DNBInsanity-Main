@@ -1,5 +1,3 @@
-/*
-
 package;
 
 import flixel.FlxG;
@@ -33,7 +31,7 @@ class OutdatedState extends MusicBeatState
 			\n
 			Thank you for using the Engine!",
 			32);
-		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+		warnText.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
 	}
@@ -62,4 +60,3 @@ class OutdatedState extends MusicBeatState
 		super.update(elapsed);
 	}
 }
-*/

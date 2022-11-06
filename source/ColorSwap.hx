@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.system.FlxAssets.FlxShader;
 
 class ColorSwap {
-	
 	public var shader(default, null):ColorSwapShader = new ColorSwapShader();
 	public var hue(default, set):Float = 0;
 	public var saturation(default, set):Float = 0;

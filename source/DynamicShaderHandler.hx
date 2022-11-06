@@ -8,16 +8,11 @@ import sys.FileSystem;
 /*
 	Class to handle animated shaders, calling the new consturctor is enough, 
 	the update function will be automatically called by the playstate.
-
 	Access the shader the handler with `PlayState.animatedShaders["fileName"]`
-
 	Shaders should be placed at /shaders folder, with ".frag" extension, 
 	See shaders folder for examples and guides.
-
 	Optimize variable might help with some heavy shaders but only makes a difference on decent Intel CPUs.
-
 	@author Kemo
-
 	Please respect the effort but to this and credit us if used :]
 	
 	

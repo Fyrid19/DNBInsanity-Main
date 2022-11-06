@@ -93,9 +93,9 @@ class Main extends Sprite
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
-		FlxG.autoPause = false;
 
 		#if html5
+		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
 		
@@ -106,9 +106,6 @@ class Main extends Sprite
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
 	// very cool person for real they don't get enough credit for their work
-	/*
-		KSKLDFJSLKFJERNWMRN KILL ME SOMEONE IT CAUSES 999999999999999999999 CRASHES FJSDHFKJQEBRMNDBF
-	*/
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
@@ -120,7 +117,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "OSEngine_" + dateNow + ".txt";
+		path = "./crash/" + "PsychEngine_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -133,7 +130,7 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/notweuz/FNF-OSEngine\n\n> Crash Handler written by: sqirra-rng";
+		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
 
 		if (!FileSystem.exists("./crash/"))
 			FileSystem.createDirectory("./crash/");

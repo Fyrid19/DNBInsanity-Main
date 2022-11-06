@@ -126,60 +126,60 @@ class TerminalState extends MusicBeatState
         CommandList.push(new TerminalCommand("characters", CommandErrorList[1], function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
-            UpdateText("\nbarren.dat\nlenzo.dat\nmorrow.dat\ngambi.dat\nbamlin.dat\nbanlin.dat\navery.dat\nshifted.lua");
+            UpdateText("\nbarren.dat\nlenzo.dat\nmorrow.dat\ngambi.dat\nbamlin.dat\nbanlin.dat\navery.dat");
             //UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat\nmoldy.dat");
         }));
         CommandList.push(new TerminalCommand("admin", CommandErrorList[2], function(arguments:Array<String>)
         {
             if (!morrowTakesOver) {
-            if (arguments.length == 0)
-            {
-                UpdatePreviousText(false); //resets the text
-                UpdateText("\n" + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
-                 + CommandErrorList[5]);
-                return;
-            }
-            else if (arguments.length != 2)
-            {
-                UpdatePreviousText(false); //resets the text
-                UpdateText(CommandErrorList[6] + " " + arguments.length + CommandErrorList[7]);
-            }
-            else
-            {
-                if (arguments[0] == "grant")
+                if (arguments.length == 0)
                 {
-                    switch (arguments[1])
-                    {
-                        default:
-                            UpdatePreviousText(false); //resets the text
-                            UpdateText("\n" + arguments[1] + CommandErrorList[8]);
-                        case "morrow.dat":
-                            UpdatePreviousText(false); //resets the text
-                            UpdateText("\n" + arguments[1] + CommandErrorList[8]); // its lying to you
-                            morrowTakesOver = true;
-                        case "barren.dat":
-                            UpdatePreviousText(false); //resets the text
-                            UpdateText(CommandErrorList[9]);
-                            PlayState.globalFunny = CharacterFunnyEffect.Barren;
-                            PlayState.SONG = Song.loadFromJson("overdrive", 'charts');
-                            PlayState.SONG.validScore = false;
-                            Main.fpsVar.visible = !FlxG.save.data.disableFps;
-                            LoadingState.loadAndSwitchState(new PlayState());
-                        case "lenzo.dat":
-                            UpdatePreviousText(false); //resets the text
-                            UpdateText(CommandErrorList[9]);
-                            PlayState.globalFunny = CharacterFunnyEffect.Lenzo;
-                            PlayState.SONG = Song.loadFromJson("anillo", 'charts');
-                            PlayState.SONG.validScore = false;
-                            Main.fpsVar.visible = !FlxG.save.data.disableFps;
-                            LoadingState.loadAndSwitchState(new PlayState());
-                    }
+                    UpdatePreviousText(false); //resets the text
+                    UpdateText("\n" + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
+                    + CommandErrorList[5]);
+                    return;
+                }
+                else if (arguments.length != 2)
+                {
+                    UpdatePreviousText(false); //resets the text
+                    UpdateText(CommandErrorList[6] + " " + arguments.length + CommandErrorList[7]);
                 }
                 else
                 {
-                    UpdateText("\nInvalid Parameter"); //todo: translate.
+                    if (arguments[0] == "grant")
+                    {
+                        switch (arguments[1])
+                        {
+                            default:
+                                UpdatePreviousText(false); //resets the text
+                                UpdateText("\n" + arguments[1] + CommandErrorList[8]);
+                            case "morrow.dat":
+                                UpdatePreviousText(false); //resets the text
+                                UpdateText("\n" + arguments[1] + CommandErrorList[8]); // its lying to you
+                                morrowTakesOver = true;
+                            case "barren.dat":
+                                UpdatePreviousText(false); //resets the text
+                                UpdateText(CommandErrorList[9]);
+                                PlayState.globalFunny = CharacterFunnyEffect.Barren;
+                                PlayState.SONG = Song.loadFromJson("overdrive", 'charts');
+                                PlayState.SONG.validScore = false;
+                                Main.fpsVar.visible = !FlxG.save.data.disableFps;
+                                LoadingState.loadAndSwitchState(new PlayState());
+                            case "lenzo.dat":
+                                UpdatePreviousText(false); //resets the text
+                                UpdateText(CommandErrorList[9]);
+                                PlayState.globalFunny = CharacterFunnyEffect.Lenzo;
+                                PlayState.SONG = Song.loadFromJson("anillo", 'charts');
+                                PlayState.SONG.validScore = false;
+                                Main.fpsVar.visible = !FlxG.save.data.disableFps;
+                                LoadingState.loadAndSwitchState(new PlayState());
+                        }
+                    }
+                    else
+                    {
+                        UpdateText("\nInvalid Parameter"); //todo: translate.
+                    }
                 }
-            }
             }
         }));
         CommandList.push(new TerminalCommand("clear", CommandErrorList[3], function(arguments:Array<String>)
@@ -194,45 +194,49 @@ class TerminalState extends MusicBeatState
             if (!morrowTakesOver) {
                 switch (arguments[0].toLowerCase())
                 {
-                case "text":
-                    switch (arguments[1].toLowerCase())
-                    {
-                        default:
-                            tx = "Text file not found.";
-                        case "barren":
-                            tx = "The last of his kind. Only having a brother to have his back.";
-                        case "lenzo":
-                            tx = "Calls himself a ringslinger. He hasn't broke his limits yet.";
-                        case "morrow":
-                            tx = "The most powerful of the three. Many would call him insane.";
-                        case "gambi":
-                            tx = "'gamer'";
-                        case "bamlin":
-                            tx = "The younger one. Always looks up to the older one.";
-                        case "banlin":
-                            tx = "The older one. Takes care of the younger one.";
-                    }
+                    case "text":
+                        switch (arguments[1].toLowerCase())
+                        {
+                            default:
+                                tx = "Text file not found.";
+                            case "barren":
+                                tx = "The last of his kind. Only having a brother to have his back.";
+                            case "lenzo":
+                                tx = "Calls himself a ringslinger. He hasn't broke his limits yet.";
+                            case "morrow":
+                                tx = "The most powerful of the three. Many would call him insane.";
+                            case "gambi":
+                                tx = "'gamer'";
+                            case "bamlin":
+                                tx = "The younger one. Always looks up to the older one.";
+                            case "banlin":
+                                tx = "The older one. Takes care of the younger one.";
+                        }
 
-                    switch (arguments[1]) // case sensitive!!
-                    {
-                        case "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890":
-                            tx = "wow you really wasted time doing that for this? bummer.";
-                    }
-                case "json":
-                    switch (arguments[1].toLowerCase())
-                    {
-                        default:
-                            tx = "JSON file not found.";
-                        case "blu.json":
-                            UpdatePreviousText(false); //resets the text
-                            UpdateText(CommandErrorList[10]);
-                            PlayState.SONG = Song.loadFromJson("blu", 'charts');
-                            PlayState.SONG.validScore = false;
-                            Main.fpsVar.visible = !FlxG.save.data.disableFps;
-                            LoadingState.loadAndSwitchState(new PlayState());
-                    }
+                        switch (arguments[1]) // case sensitive!!
+                        {
+                            case "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890":
+                                tx = "wow you really wasted time doing that for this? bummer.";
+                        }
+                    case "json":
+                        switch (arguments[1].toLowerCase())
+                        {
+                            default:
+                                tx = "JSON file not found.";
+                            case "blu.json":
+                                UpdatePreviousText(false); //resets the text
+                                UpdateText(CommandErrorList[10]);
+                                PlayState.SONG = Song.loadFromJson("blu", 'charts');
+                                PlayState.SONG.validScore = false;
+                                Main.fpsVar.visible = !FlxG.save.data.disableFps;
+                                LoadingState.loadAndSwitchState(new PlayState());
+                        }
+                    default:
+                        tx = "Invalid Parameter"
                 }
                 UpdateText("\n" + tx);
+            } else {
+                UpdateText("\nError in line 194: Unknown variable 'morrowTakesOver'");
             }
             
         }));
@@ -346,12 +350,14 @@ class TerminalState extends MusicBeatState
             FlxG.switchState(new MainMenuState());
         } 
 
-        if (FlxG.keys.justPressed.ESCAPE && morrowTakesOver)
+        if (FlxG.keys.justPressed.ESCAPE && morrowTakesOver) // im changing this to a fakeout soon
         {
             morrowTimer = new FlxTimer().start(3, function(timer:FlxTimer) {
+                UpdatePreviousText(false);
                 UpdateText("\nWhere do you think you're going?");
 
                 morrowTimer = new FlxTimer().start(3, function(timer:FlxTimer) {
+                    UpdatePreviousText(false);
                     UpdateText("\nThis is MY game now. You will do what I command.");
 
                     morrowTimer = new FlxTimer().start(3, function(timer:FlxTimer) {
@@ -468,15 +474,5 @@ class TerminalCommand
         FuncToCall = func;
         this.showInHelp = showInHelp;
         this.oneCommand = oneCommand;
-    }
-}
-
-class TerminalError
-{
-    public var errorMessage:String = "Error: ur gay";
-
-    public function new(message:String)
-    {
-        errorMessage = message;
     }
 }

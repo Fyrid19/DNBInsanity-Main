@@ -52,11 +52,6 @@ class CreditsState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		var versionShit:FlxText = new FlxText(FlxG.width * 0.7, FlxG.height - 24, 0, "Press CTRL for Official Discord Server", 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-
 		#if MODS_ALLOWED
 		var path:String = 'modsList.txt';
 		if(FileSystem.exists(path))
@@ -86,11 +81,6 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['OS Engine Team'],
-			['notweuz_', 'weuz', 'Main Programmer of OS Engine', 'https://twitter.com/notweuz_', '8633F2'],
-			['nelifs', 'nelifs', 'Second Programmer and Designer of OS Engine', 'https://github.com/nelifs', '1C1C1C'],
-			['Cooljer', 'cooljer', 'Main Artist of OS Engine', 'https://twitter.com/cooljer_', '3360F2'],
-			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',								'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'river',			'Main Artist/Animator of Psych Engine',							'https://twitter.com/RiverOaken',		'B42F71'],
@@ -181,10 +171,6 @@ class CreditsState extends MusicBeatState
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
-		
-		if (FlxG.keys.pressed.CONTROL) {
-			CoolUtil.browserLoad('https://discord.gg/5vEHTRjNck');
 		}
 
 		if(!quitting)

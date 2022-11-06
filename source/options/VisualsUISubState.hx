@@ -9,7 +9,6 @@ import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import ColorblindFilters;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
@@ -48,68 +47,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool',
 			false);
 		addOption(option);
-
-		var option:Option = new Option("Showcase Mode",
-			'If checked, hides entire HUD and enables botplay :D',
-			'showcaseMode',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Hide Watermark',
-			'If checked, hides watermark in left-bottom corner while playing song',
-			'hideWatermark',
-			'bool',
-			false);
-		addOption(option);
-
-		/*
-		var option:Option = new Option('Character Trail',
-			'If checked, adds trail behind character like in thorns',
-			'characterTrail',				shit lol. i made better finally
-			'bool',
-			false);
-		addOption(option);
-		*/
-
-		var option:Option = new Option('Hide Score Text',
-			'If checked, hides score, accuracy and misses text under health bar in song',
-			'hideScoreText',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Icon Bop',
-			'Classic is Vanilla FnF icons bops, OS is OS Engine icons bops',
-			'iconbops',
-			'string',
-			'OS',
-			['OS', 'Classic']);
-		addOption(option);
-
-		var option:Option = new Option('Score Text Position',
-			'Classic is Psych Engine position, New is OS Engine position',
-			'scoreposition',
-			'string',
-			'Classic',
-			['Classic', 'New']);
-		addOption(option);
-
-		var option:Option = new Option('Colorblind Filter',
-			'You can set colorblind filter (makes the game more playable for colorblind people)',
-			'colorblindMode',
-			'string',
-			'None', 
-			['None', 'Deuteranopia', 'Protanopia', 'Tritanopia']);
-		option.onChange = ColorblindFilters.applyFiltersOnGame;
-		addOption(option);
 		
 		var option:Option = new Option('Time Bar:',
 			"What should the Time Bar display?",
 			'timeBarType',
 			'string',
 			'Time Left',
-			['Time Left', 'Time Elapsed', 'Song Name', 'OS Time Left', 'Disabled']);
+			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 
 		var option:Option = new Option('Flashing Lights',
@@ -154,32 +98,6 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = onChangeFPSCounter;
 		#end
-
-		var option:Option = new Option('Themed Main Menu Background',
-			'If checked, the background color of the main menu depends on the time of day.',
-			'themedmainmenubg',
-			'bool',
-			false);
-		option.defaultValue = false;
-		addOption(option);
-
-		/*
-		var option:Option = new Option('Auto Title Skip',
-			'If checked, automatically skips the title state.',
-			'autotitleskip',
-			'bool',
-			false);
-		option.defaultValue = false;
-		addOption(option);
-		*/
-
-		var option:Option = new Option('Note Skin',
-			"What note skin do you prefer for playing?",
-			'noteSkinSettings',
-			'string',
-			'Classic',
-			['Classic', 'Circle']);
-		addOption(option);
 		
 		var option:Option = new Option('Pause Screen Song:',
 			"What song do you prefer for the Pause Screen?",

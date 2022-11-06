@@ -49,13 +49,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false); //Default value
 		addOption(option);
 
-		var option:Option = new Option('Display MS Offset On Note Hits',
-			'If checked, a offset (in ms) will appear near notes',
-			'showMsText',
-			'bool',
-			false);
-		addOption(option);
-
 		var option:Option = new Option('Middlescroll',
 			'If checked, your notes get centered.',
 			'middleScroll',
@@ -63,11 +56,11 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false);
 		addOption(option);
 
-		var option:Option = new Option('Hide Opponent Notes',
-			'If checked, hides opponent arrows when playing',
+		var option:Option = new Option('Opponent Notes',
+			'If unchecked, opponent notes get hidden.',
 			'opponentStrums',
 			'bool',
-			false);
+			true);
 		addOption(option);
 
 		var option:Option = new Option('Ghost Tapping',
@@ -76,22 +69,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'bool',
 			true);
 		addOption(option);
-
-		var option:Option = new Option('Remove Perfect! Note Judgement',
-			'If checked, removes Perfect! judgement',
-			'removePerfects',
-			'bool',
-			false);
-		addOption(option);
-
-		/*
-		var option:Option = new Option('Note Camera Movement',
-			'If checked, camera will move when pressing notes',
-			'cameramoveonnotes',
-			'bool',					should fix this someday.
-			true);
-		addOption(option);
-		*/
 
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
@@ -113,43 +90,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
 
-		var option:Option = new Option('Hold Notes Visibility',
-			'These lines after hold notes will be shown with selecter visibility',
-			'holdNoteVisibility',
-			'percent',
-			1);
-		addOption(option);
-		option.scrollSpeed = 1;
-		option.minValue = 0.0;
-		option.changeValue = 0.1;
-		option.maxValue = 1;
-		option.decimals = 1;
-
-		var option:Option = new Option('Opponent Lane Underlay Visibility',
-			'Sets visibility of opponent\'s lane underlay.',
-			'opponentUnderlaneVisibility',
-			'percent',
-			0);
-		addOption(option);	
-		option.scrollSpeed = 1;
-		option.minValue = 0.0;
-		option.maxValue = 1;
-		option.changeValue = 0.1;
-		option.decimals = 1;
-
-		var option:Option = new Option('Lane Underlay Visibility',
-			'Sets visibility of lane underlay.',
-			'underlaneVisibility',
-			'percent',
-			0);
-		addOption(option);	
-		option.scrollSpeed = 1;
-		option.minValue = 0.0;
-		option.maxValue = 1;
-		option.changeValue = 0.1;
-		option.decimals = 1;
-		
-
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
 			'ratingOffset',
@@ -159,17 +99,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.scrollSpeed = 20;
 		option.minValue = -30;
 		option.maxValue = 30;
-		addOption(option);
-
-		var option:Option = new Option('Perfect! Hit Window',
-			'Changes the amount of time you have\nfor hitting a "Perfect!" in milliseconds.',
-			'perfectWindow',
-			'int',
-			10);
-		option.displayFormat = '%vms';
-		option.scrollSpeed = 15;
-		option.minValue = 1;
-		option.maxValue = 10;
 		addOption(option);
 
 		var option:Option = new Option('Sick! Hit Window',

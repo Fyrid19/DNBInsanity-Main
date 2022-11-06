@@ -42,7 +42,6 @@ enum abstract Action(String) to String from String
 	var BACK = "back";
 	var PAUSE = "pause";
 	var RESET = "reset";
-	var KEY5 = "key5";
 }
 #else
 @:enum
@@ -104,7 +103,6 @@ enum Control
 	ACCEPT;
 	BACK;
 	PAUSE;
-	KEY5;
 }
 
 enum KeyboardScheme
@@ -149,7 +147,6 @@ class Controls extends FlxActionSet
 	var _back = new FlxActionDigital(Action.BACK);
 	var _pause = new FlxActionDigital(Action.PAUSE);
 	var _reset = new FlxActionDigital(Action.RESET);
-	var _key5 = new FlxActionDigital(Action.KEY5);
 
 	#if (haxe >= "4.0.0")
 	var byName:Map<String, FlxActionDigital> = [];
@@ -300,11 +297,6 @@ class Controls extends FlxActionSet
 	inline function get_RESET()
 		return _reset.check();
 
-	public var KEY5(get, never):Bool;
-
-	inline function get_KEY5()
-		return _key5.check();
-
 	#if (haxe >= "4.0.0")
 	public function new(name, scheme = None)
 	{
@@ -338,7 +330,6 @@ class Controls extends FlxActionSet
 		add(_back);
 		add(_pause);
 		add(_reset);
-		add(_key5);
 
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -435,7 +426,6 @@ class Controls extends FlxActionSet
 			case BACK: _back;
 			case PAUSE: _pause;
 			case RESET: _reset;
-			case KEY5: _key5;
 		}
 	}
 
@@ -495,8 +485,6 @@ class Controls extends FlxActionSet
 				func(_pause, JUST_PRESSED);
 			case RESET:
 				func(_reset, JUST_PRESSED);
-			case KEY5:
-				func(_key5, PRESSED);
 		}
 	}
 
@@ -665,7 +653,6 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, keysMap.get('back'));
 				inline bindKeys(Control.PAUSE, keysMap.get('pause'));
 				inline bindKeys(Control.RESET, keysMap.get('reset'));
-				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 			case Duo(true):
 				inline bindKeys(Control.UI_UP, [W]);
 				inline bindKeys(Control.UI_DOWN, [S]);
@@ -679,7 +666,6 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [H, X]);
 				inline bindKeys(Control.PAUSE, [ONE]);
 				inline bindKeys(Control.RESET, [R]);
-				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 			case Duo(false):
 				inline bindKeys(Control.UI_UP, [FlxKey.UP]);
 				inline bindKeys(Control.UI_DOWN, [FlxKey.DOWN]);
@@ -693,7 +679,6 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [P]);
 				inline bindKeys(Control.PAUSE, [ENTER]);
 				inline bindKeys(Control.RESET, [BACKSPACE]);
-				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 			case None: // nothing
 			case Custom: // nothing
 		}
@@ -807,7 +792,6 @@ class Controls extends FlxActionSet
 		addGamepadLiteral(id, [
 			Control.ACCEPT => [A, START],
 			Control.BACK => [B],
-			Control.KEY5 => [LEFT_STICK_CLICK],
 			Control.UI_UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
 			Control.UI_DOWN => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
 			Control.UI_LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],

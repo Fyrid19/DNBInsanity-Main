@@ -35,11 +35,9 @@ class BuildingShader extends FlxShader
     uniform float alphaShit;
     void main()
     {
-
       vec4 color = flixel_texture2D(bitmap,openfl_TextureCoordv);
       if (color.a > 0.0)
         color-=alphaShit;
-
       gl_FragColor = color;
     }
   ");
@@ -790,7 +788,6 @@ void main()
 
 
 /*STOLE FROM DAVE AND BAMBI
-
 I LOVE BANUUU I LOVE BANUUU
    ________
   /        \
@@ -920,7 +917,7 @@ class PulseEffect extends Effect
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
-    public var Enabled(default, set):Bool = false;
+    // public var Enabled(default, set):Bool = false;
 
 	public function new(waveSpeed:Float,waveFrequency:Float,waveAmplitude:Float):Void
 	{
@@ -928,8 +925,8 @@ class PulseEffect extends Effect
 		this.waveFrequency = waveFrequency;
 		this.waveAmplitude = waveAmplitude;
 		shader.data.uTime.value = [0];
-        shader.data.uampmul.value = [0];
-        shader.data.uEnabled.value = [false];
+        shader.data.uampmul.value = [1];
+        // shader.data.uEnabled.value = [false];
 		PlayState.instance.shaderUpdates.push(update);
 	}
 
@@ -946,12 +943,13 @@ class PulseEffect extends Effect
         return v;
     }
 
+	/*
     function set_Enabled(v:Bool):Bool
     {
         Enabled = v;
         shader.data.uEnabled.value = [Enabled];
         return v;
-    }
+    }  */
     
     function set_waveFrequency(v:Float):Float
     {
@@ -1115,8 +1113,6 @@ class PulseShader extends FlxShader
      * Number of waves over time
      */
     uniform float uFrequency;
-
-    uniform bool uEnabled;
     
     /**
      * How much the pixels are going to stretch over the waves
